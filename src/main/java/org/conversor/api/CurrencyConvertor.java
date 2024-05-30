@@ -23,7 +23,6 @@ public class CurrencyConvertor {
             HttpRequest req = HttpRequest.newBuilder(url).build();
             HttpResponse<String> res = client.send(req, HttpResponse.BodyHandlers.ofString());
 
-            System.out.println(res.body());
             CurrencyResult result = gson.fromJson(res.body(), CurrencyResult.class);
             System.out.println(amount + " " + result.getC1() + " are equivalent to " + result.getR2() + " " + result.getC2() );
         } catch (IOException | InterruptedException e) {

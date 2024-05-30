@@ -1,6 +1,5 @@
 package org.conversor.ui;
 
-import org.conversor.api.CurrencyConvertor;
 import org.conversor.models.MenuItem;
 
 import java.util.List;
@@ -8,7 +7,7 @@ import java.util.Scanner;
 
 public class Menu {
 
-    private int option;
+
     private List<MenuItem> items;
     private Scanner stdin = new Scanner(System.in);
 
@@ -19,10 +18,11 @@ public class Menu {
     }
 
     public int showMenu() {
+        System.out.println();
         System.out.println("0. Exit");
         items.forEach(System.out::println);
         System.out.print("Your option is: ");
-        this.option = this.stdin.nextInt();
+        int option = stdin.nextInt();
 
         if (option == 0)
             System.out.println("Goodbye!");
