@@ -1,5 +1,6 @@
 package org.conversor.ui;
 
+import org.conversor.api.CurrencyConvertor;
 import org.conversor.models.MenuItem;
 
 import java.util.List;
@@ -9,32 +10,27 @@ public class Menu {
 
     private int option;
     private List<MenuItem> items;
+    private Scanner stdin = new Scanner(System.in);
+
 
     public Menu(List<MenuItem> items) {
         this.items = items;
-        init();
-    }
-    private void init() {
         System.out.println("<<<<<<<<<<<<<< Currency Converter >>>>>>>>>>>>>>");
-
-        items.forEach(System.out::println);
     }
 
-    public void showMenu() {
-        Scanner stdin = new Scanner(System.in);
+    public int showMenu() {
+        System.out.println("0. Exit");
+        items.forEach(System.out::println);
+        System.out.print("Your option is: ");
+        this.option = this.stdin.nextInt();
 
-        do {
-            System.out.println("Your option is: ");
-            option = stdin.nextInt();
+        if (option == 0)
+            System.out.println("Goodbye!");
+        else if (option < 0 || option > items.size()) {
+            System.out.println("Invalid option. Try again.");
+            option = -1;
+        }
 
-            if (option == 0) continue;
-
-            System.out.println("How much? ");
-            float amount = stdin.nextFloat();
-
-
-        } while (option != 0);
-
-        System.out.println("Good bye!");
+        return option;
     }
 }
