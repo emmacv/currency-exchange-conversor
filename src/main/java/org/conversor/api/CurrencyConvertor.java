@@ -19,7 +19,8 @@ public class CurrencyConvertor {
     public static void convertCurrencies(String c1, String c2, float amount) {
         var url = URI.create(uri + c1 + "/" + c2 + "/" + amount);
 
-        try (HttpClient client = HttpClient.newBuilder().build()) {
+        try  {
+            HttpClient client = HttpClient.newBuilder().build();
             HttpRequest req = HttpRequest.newBuilder(url).build();
             HttpResponse<String> res = client.send(req, HttpResponse.BodyHandlers.ofString());
 
